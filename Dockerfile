@@ -42,7 +42,8 @@ COPY ./constraints-3.8.txt /constraints-3.8.txt
 # Install apache airflow with subpackages
 RUN pip install --upgrade pip && \
     useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow && \
-    pip install apache-airflow[postgres]==${AIRFLOW_VERSION} --constraint /constraints-3.8.txt
+    pip install apache-airflow[postgres]==${AIRFLOW_VERSION} --constraint /constraints-3.8.txt && \
+    pip install xlrd
 
 # Copy the entrypoint.sh from host to container (at path AIRFLOW_HOME)
 COPY ./entrypoint.sh ./entrypoint.sh
